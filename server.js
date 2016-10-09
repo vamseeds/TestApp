@@ -12,7 +12,10 @@ var methodOverride = require('method-override');
 var db = require('./config/db');
 
 // set our port
-var port = process.env.PORT || 12345; 
+//var port = process.env.PORT || 12345; 
+//
+ var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+       var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 // connect to our mongoDB database 
 // (uncomment after you enter in your own credentials in config/db.js)
@@ -39,7 +42,7 @@ require('./app/routes')(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080
-app.listen(port);               
+app.listen(port,ipaddress);               
 
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);
